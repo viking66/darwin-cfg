@@ -11,9 +11,6 @@
     computer = 20;
     display = 10;
     harddisk = 10;
-    computerOnAC = 180;
-    displayOnAC = 30;
-    harddiskOnAC = 30;
   };
 
   programs = {
@@ -30,7 +27,6 @@
       AppleShowScrollBars = "Automatic";
       "com.apple.swipescrolldirection" = false;
       "com.apple.trackpad.scaling" = 2.0;
-      "com.apple.mouse.scaling" = 2.0;
     };
 
     controlcenter = {
