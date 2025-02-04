@@ -24,7 +24,7 @@
     NSGlobalDomain = {
       AppleICUForce24HourTime = true;
       AppleInterfaceStyle = "Dark";
-      AppleShowScrollBars = "Automatic";
+      AppleShowScrollBars = "WhenScrolling";
       "com.apple.swipescrolldirection" = false;
       "com.apple.trackpad.scaling" = 2.0;
     };
@@ -65,11 +65,21 @@
     trackpad.TrackpadRightClick = true;
   };
 
+  launchd.user.agents.no-finder = {
+    command = "${pkgs.coreutils}/bin/killall Finder";
+    serviceConfig = {
+      RunAtLoad = true;
+      KeepAlive = false;
+    };
+  };
+
   users.users.jason = {
     name = "jason";
     home = "/Users/jason";
     shell = pkgs.zsh;
   };
+
+  nix.settings.trusted-users = ["jason"];
 
   environment.systemPackages = with pkgs; [
     git

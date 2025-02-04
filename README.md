@@ -23,7 +23,7 @@ cd ~/.config/darwin
 
 4. Build the configuration:
 ```bash
-darwin-rebuild switch --flake .
+nix run nix-darwin/master#darwin-rebuild -- switch --flake ~/.config/darwin-cfg
 ```
 
 ## Updates
@@ -32,7 +32,7 @@ To update and switch to new configuration:
 ```bash
 cd ~/.config/darwin
 git pull
-darwin-rebuild switch --flake .
+nix run nix-darwin/master#darwin-rebuild -- switch --flake ~/.config/darwin-cfg
 ```
 
 ## Structure
