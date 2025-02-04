@@ -54,7 +54,7 @@
 
     menuExtraClock = {
       Show24Hour = true;
-      ShowDate = true;
+      ShowDate = 1;
       ShowSeconds = true;
     };
 
@@ -80,7 +80,4 @@
 
   services.nix-daemon.enable = true;
   nix.package = pkgs.nix;
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
-  system.stateVersion = 5;
 }
