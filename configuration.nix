@@ -63,6 +63,8 @@
     screensaver.askForPassword = true;
 
     trackpad.TrackpadRightClick = true;
+
+    WindowManager.EnableTiledWindowMargins = false;
   };
 
   launchd.user.agents.no-finder = {
