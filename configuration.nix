@@ -24,6 +24,7 @@
     NSGlobalDomain = {
       AppleICUForce24HourTime = true;
       AppleInterfaceStyle = "Dark";
+      AppleKeyboardUIMode = 3;
       AppleShowScrollBars = "WhenScrolling";
       "com.apple.swipescrolldirection" = false;
       "com.apple.trackpad.scaling" = 2.0;
