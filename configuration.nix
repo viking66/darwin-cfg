@@ -1,6 +1,8 @@
 { config, pkgs, ... }:
 
 {
+  nix.enable = true;
+
   networking = {
     computerName = "havoc";
     hostName = "havoc";
@@ -76,6 +78,8 @@
     };
   };
 
+  ids.gids.nixbld = 30000;
+
   users.users.jason = {
     name = "jason";
     home = "/Users/jason";
@@ -91,6 +95,5 @@
     wget
   ];
 
-  services.nix-daemon.enable = true;
   nix.package = pkgs.nix;
 }
