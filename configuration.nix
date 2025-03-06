@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  nix.enable = true;
+  nix.enable = false;
 
   networking = {
     computerName = "havoc";
@@ -20,7 +20,7 @@
     zsh.enable = true;
   };
 
-  security.pam.enableSudoTouchIdAuth = true;
+  security.pam.services.sudo_local.touchIdAuth = true;
 
   system.defaults = {
     NSGlobalDomain = {
