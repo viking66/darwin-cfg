@@ -1,7 +1,28 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
-  nix.enable = false;
+  nix.enable = true;
+  
+  nix.settings = {
+    build-users-group = "nixbld";
+    experimental-features = "nix-command flakes";
+    bash-prompt-prefix = "(nix:$name) ";
+    max-jobs = "auto";
+    substituters = [
+      "https://cache.nixos.org"
+      "https://cache.lix.systems"
+    ];
+    trusted-public-keys = [
+      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+      "cache.lix.systems:aBnZUw8zA7H35Cz2RyKFVs3H4PlGTLawyY5KRbvJR8o="
+    ];
+    extra-nix-path = "nixpkgs=flake:nixpkgs";
+    trusted-users = [ "jason" ];
+    builders = lib.mkForce "ssh-ng://builder@linux-builder aarch64-linux /etc/nix/builder_ed25519 4 - - - c3NoLWVkMjU1MTkgQUFBQUMzTnphQzFsWkRJMU5URTVBQUFBSUpCV2N4Yi9CbGFxdDFhdU90RStGOFFVV3JVb3RpQzVxQkorVXVFV2RWQ2Igcm9vdEBuaXhvcwo=";
+    builders-use-substitutes = true;
+  };
+
+  ids.gids.nixbld = 350;
 
   networking = {
     computerName = "havoc";
@@ -62,7 +83,7 @@
     };
 
     screencapture.location = "~/Downloads/screenshots";
-    
+
     screensaver.askForPassword = true;
 
     trackpad.TrackpadRightClick = true;
@@ -78,15 +99,11 @@
     };
   };
 
-  ids.gids.nixbld = 30000;
-
   users.users.jason = {
     name = "jason";
     home = "/Users/jason";
     shell = pkgs.zsh;
   };
-
-  nix.settings.trusted-users = ["jason"];
 
   environment.systemPackages = with pkgs; [
     git
@@ -97,3 +114,4 @@
 
   nix.package = pkgs.nix;
 }
+
