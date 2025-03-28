@@ -18,8 +18,17 @@
     ];
     extra-nix-path = "nixpkgs=flake:nixpkgs";
     trusted-users = [ "jason" ];
-    builders = lib.mkForce "ssh-ng://builder@linux-builder aarch64-linux /etc/nix/builder_ed25519 4 - - - c3NoLWVkMjU1MTkgQUFBQUMzTnphQzFsWkRJMU5URTVBQUFBSUpCV2N4Yi9CbGFxdDFhdU90RStGOFFVV3JVb3RpQzVxQkorVXVFV2RWQ2Igcm9vdEBuaXhvcwo=";
     builders-use-substitutes = true;
+  };
+  
+  # Configure the aarch64-linux builder using nix-darwin module
+  nix.linux-builder = {
+    enable = true;
+    maxJobs = 4;
+    supportedFeatures = [ "kvm" "benchmark" "big-parallel" ];
+    # systems = [ "aarch64-linux" ];
+    package = pkgs.darwin.linux-builder-x86_64;
+    systems = [ "x86_64-linux" ];
   };
 
   ids.gids.nixbld = 350;
@@ -114,4 +123,3 @@
 
   nix.package = pkgs.nix;
 }
-
